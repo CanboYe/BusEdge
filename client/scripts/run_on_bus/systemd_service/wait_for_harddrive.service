@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=Wait until the harddrive becomes reachable
+Before=busedge_launch_all.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/albert/gabriel-BusEdge/client/scripts/run_on_bus/wait_for_harddrive.sh
+TimeoutStartSec=300s
+
+[Install]
+WantedBy=default.target

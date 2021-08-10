@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=Launch the Gabriel platform
+# Requires=wait_for_harddrive.service wait_for_network.service
+# After=wait_for_harddrive.service wait_for_network.service
+
+[Service]
+# The dummy program will exit
+Type=oneshot
+# Execute a dummy program
+ExecStart=/bin/true
+# This service shall be considered active after start
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

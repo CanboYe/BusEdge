@@ -1,0 +1,15 @@
+<!--
+SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
+<launch>
+
+<node name="image_proc1" pkg="image_proc" type="image_proc" ns="camera1/"/>
+<node name="image_proc2" pkg="image_proc" type="image_proc" ns="camera2/"/>
+<node name="image_proc3" pkg="image_proc" type="image_proc" ns="camera3/"/>
+<node name="image_proc4" pkg="image_proc" type="image_proc" ns="camera4/"/>
+<node name="image_proc5" pkg="image_proc" type="image_proc" ns="camera5/"/>
+
+</launch>

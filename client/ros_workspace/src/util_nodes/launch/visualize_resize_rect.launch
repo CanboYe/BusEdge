@@ -1,0 +1,115 @@
+<!--
+SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
+<launch>
+	<!-- Video resizing -->
+	<node pkg="nodelet" type="nodelet" args="standalone image_proc/resize" name="resize_img1">
+	  <!-- remap input topics -->
+	  <remap from="image" to="camera1/image_rect_color"/>
+	  <remap from="camera_info" to="camera1/camera_info"/>
+
+	  <!-- remap output topics -->
+	  <remap from="resize_img1/image" to="camera1/image_resized"/>
+	  <remap from="resize_img1/camera_info" to="camera1/camera_info_resized"/>
+	</node>
+
+	<node pkg="nodelet" type="nodelet" args="standalone image_proc/resize" name="resize_img2">
+	  <!-- remap input topics -->
+	  <remap from="image" to="camera2/image_rect_color"/>
+	  <remap from="camera_info" to="camera2/camera_info"/>
+
+	  <!-- remap output topics -->
+	  <remap from="resize_img2/image" to="camera2/image_resized"/>
+	  <remap from="resize_img2/camera_info" to="camera2/camera_info_resized"/>
+	</node>
+
+	<node pkg="nodelet" type="nodelet" args="standalone image_proc/resize" name="resize_img3">
+	  <!-- remap input topics -->
+	  <remap from="image" to="camera3/image_rect_color"/>
+	  <remap from="camera_info" to="camera3/camera_info"/>
+
+	  <!-- remap output topics -->
+	  <remap from="resize_img3/image" to="camera3/image_resized"/>
+	  <remap from="resize_img3/camera_info" to="camera3/camera_info_resized"/>
+	</node>
+
+	<node pkg="nodelet" type="nodelet" args="standalone image_proc/resize" name="resize_img4">
+	  <!-- remap input topics -->
+	  <remap from="image" to="camera4/image_rect_color"/>
+	  <remap from="camera_info" to="camera4/camera_info"/>
+
+	  <!-- remap output topics -->
+	  <remap from="resize_img4/image" to="camera4/image_resized"/>
+	  <remap from="resize_img4/camera_info" to="camera4/camera_info_resized"/>
+	</node>
+
+	<node pkg="nodelet" type="nodelet" args="standalone image_proc/resize" name="resize_img5">
+	  <!-- remap input topics -->
+	  <remap from="image" to="camera5/image_rect_color"/>
+	  <remap from="camera_info" to="camera5/camera_info"/>
+
+	  <!-- remap output topics -->
+	  <remap from="resize_img5/image" to="camera5/image_resized"/>
+	  <remap from="resize_img5/camera_info" to="camera5/camera_info_resized"/>
+	</node>
+
+
+
+	<!-- Dynamic reconfigure the resizing nodelet -->
+	<node name="resize_img1_param" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters resize_img1">
+	  <param name="use_scale" type="int" value="0" />
+	  <param name="width" type="int" value="640" />
+	  <param name="height" type="int" value="360" />
+	</node>
+
+	<node name="resize_img2_param" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters resize_img2">
+	  <param name="use_scale" type="int" value="0" />
+	  <param name="width" type="int" value="640" />
+	  <param name="height" type="int" value="360" />
+	</node>
+
+	<node name="resize_img3_param" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters resize_img3">
+	  <param name="use_scale" type="int" value="0" />
+	  <param name="width" type="int" value="640" />
+	  <param name="height" type="int" value="360" />
+	</node>
+
+	<node name="resize_img4_param" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters resize_img4">
+	  <param name="use_scale" type="int" value="0" />
+	  <param name="width" type="int" value="640" />
+	  <param name="height" type="int" value="360" />
+	</node>
+
+	<node name="resize_img5_param" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters resize_img5">
+	  <param name="use_scale" type="int" value="0" />
+	  <param name="width" type="int" value="640" />
+	  <param name="height" type="int" value="360" />
+	</node>
+
+
+
+	<!-- Video visualizing -->
+    <node name="cam1_image_view" pkg="image_view" type="image_view">
+    	<remap from="image" to="camera1/image_resized" />
+    	<param name="autosize" value="true" />
+    </node>
+    <node name="cam2_image_view" pkg="image_view" type="image_view">
+    	<remap from="image" to="camera2/image_resized" />
+    	<param name="autosize" value="true" />
+    </node>
+    <node name="cam3_image_view" pkg="image_view" type="image_view">
+    	<remap from="image" to="camera3/image_resized" />
+    	<param name="autosize" value="true" />
+    </node>
+    <node name="cam4_image_view" pkg="image_view" type="image_view">
+    	<remap from="image" to="camera4/image_resized" />
+    	<param name="autosize" value="true" />
+    </node>
+    <node name="cam5_image_view" pkg="image_view" type="image_view">
+    	<remap from="image" to="camera5/image_resized" />
+    	<param name="autosize" value="true" />
+    </node>
+</launch>

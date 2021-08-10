@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+   <node name="rosbag_record_5cam" pkg="rosbag" type="record" output="screen"
+         args="-o /home/albert/RECORDS/test -b 10240 --split --size=1024 --max-splits 5 \
+               -e '/camera(.*)/image_rect_color/compressed|/fix|/acceleration'"/>
+</launch>

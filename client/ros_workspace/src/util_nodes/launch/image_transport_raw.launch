@@ -1,0 +1,15 @@
+<!--
+SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
+<launch>
+
+<node name="republish1" pkg="image_transport" type="republish" output="screen" args="compressed in:=/camera1/image_raw raw out:=/camera1/image_raw" />
+<node name="republish2" pkg="image_transport" type="republish" output="screen" args="compressed in:=/camera2/image_raw raw out:=/camera2/image_raw" />
+<node name="republish3" pkg="image_transport" type="republish" output="screen" args="compressed in:=/camera3/image_raw raw out:=/camera3/image_raw" />
+<node name="republish4" pkg="image_transport" type="republish" output="screen" args="compressed in:=/camera4/image_raw raw out:=/camera4/image_raw" />
+<node name="republish5" pkg="image_transport" type="republish" output="screen" args="compressed in:=/camera5/image_raw raw out:=/camera5/image_raw" />
+
+</launch>

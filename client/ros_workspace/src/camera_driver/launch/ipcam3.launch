@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="visualize" default="false"/>
+    <arg name="undistort" default="false"/>
+   <!-- launch video stream -->
+   <include file="$(find video_stream_opencv)/launch/camera.launch" >
+   		<!-- node name and ros graph name -->
+	  	<arg name="camera_name" value="camera3" />
+	  	<!-- url of the video stream -->
+	  	<arg name="video_stream_provider" value="rtsp://admin:SV123456@182.168.1.103:554/Streaming/Channels/103" />
+	  	<!-- set camera fps to (does nothing on a stream)-->
+	  	<!-- <arg name="set_camera_fps" value="30"/> -->
+      	<!-- set buffer queue size of frame capturing to -->
+      	<arg name="buffer_queue_size" value="1" />
+	  	<!-- throttling the querying of frames to -->
+	  	<arg name="fps" value="5" />
+	  	<!-- setting frame_id -->
+	  	<arg name="frame_id" value="ipcam3_frame" />
+	  	<!-- camera info loading, take care as it needs the "file:///" at the start , e.g.:
+	  	"file:///$(find your_camera_package)/config/your_camera.yaml" -->
+	  	<arg name="camera_info_url" value="file:///$(find video_stream_opencv)/config/720p/camera3.yaml" />
+	  	<!-- flip the image horizontally (mirror it) -->
+	  	<arg name="flip_horizontal" value="false" />
+	  	<!-- flip the image vertically -->
+	  	<arg name="flip_vertical" value="false" />
+	  	<!-- visualize on an image_view window the stream generated -->
+	  	<arg name="visualize" value="$(arg visualize)" />
+		<arg name="undistort" value="$(arg undistort)" />
+   </include>
+   <node if="$(arg undistort)" name="image_proc3" pkg="image_proc" type="image_proc" ns="camera3/"/>
+   <node name="compress_param3" pkg="dynamic_reconfigure" type="dynparam" args="set /camera3/image_raw/compressed jpeg_quality 100"/>
+   <!-- <node name="compress_param3" pkg="dynamic_reconfigure" type="dynparam" args="set /camera3/image_raw/compressed format png"/> -->
+</launch>

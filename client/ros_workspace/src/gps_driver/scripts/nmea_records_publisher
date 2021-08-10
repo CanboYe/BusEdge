@@ -1,0 +1,5 @@
+#!/usr/bin/python2
+
+import libnmea_navsat_driver.nodes.records_publisher
+
+libnmea_navsat_driver.nodes.records_publisher.main()

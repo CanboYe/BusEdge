@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+
+SPDX-License-Identifier: Apache-2.0
+-->
+<launch>
+   <arg name="visualize_raw" default="false"/>
+   <arg name="visualize_resized" default="false"/>
+   <arg name="visualize_resized_rect" default="false"/>
+   <arg name="undistort_all" default="false"/>
+
+   <!-- launch video stream -->
+   <include file="$(find video_stream_opencv)/launch/ipcam1.launch" >
+      <arg name="visualize" value="$(arg visualize_raw)"/>
+      <arg name="undistort" value="$(arg undistort_all)"/>
+   </include>
+   <include file="$(find video_stream_opencv)/launch/ipcam2.launch" >
+      <arg name="visualize" value="$(arg visualize_raw)"/>
+      <arg name="undistort" value="$(arg undistort_all)"/>
+   </include>
+   <include file="$(find video_stream_opencv)/launch/ipcam3.launch" >
+      <arg name="visualize" value="$(arg visualize_raw)"/>
+      <arg name="undistort" value="$(arg undistort_all)"/>
+   </include>
+   <include file="$(find video_stream_opencv)/launch/ipcam4.launch" >
+      <arg name="visualize" value="$(arg visualize_raw)"/>
+      <arg name="undistort" value="$(arg undistort_all)"/>
+   </include>
+   <include file="$(find video_stream_opencv)/launch/ipcam5.launch" >
+      <arg name="visualize" value="$(arg visualize_raw)"/>
+      <arg name="undistort" value="$(arg undistort_all)"/>
+   </include>
+
+   <node name="nmea_records_publisher" pkg="nmea_navsat_driver" type="nmea_records_publisher"/>
+
+   <include if="$(arg visualize_resized)" file="$(find busedge_utils)/launch/resize_image.launch" />
+   <include if="$(arg visualize_resized_rect)" file="$(find busedge_utils)/launch/resize_rect_image.launch" />
+</launch>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+   <!-- launch video stream -->
+   <include file="$(find video_stream_opencv)/launch/ipcam1.launch" />
+   <include file="$(find video_stream_opencv)/launch/ipcam2.launch" />
+   <include file="$(find video_stream_opencv)/launch/ipcam3.launch" />
+   <include file="$(find video_stream_opencv)/launch/ipcam4.launch" />
+   <include file="$(find video_stream_opencv)/launch/ipcam5.launch" />
+   <!-- <include file="$(find video_stream_opencv)/launch/resize_image.launch" /> -->
+   <include file="$(find video_stream_opencv)/launch/resize_rect_image.launch" />
+</launch>

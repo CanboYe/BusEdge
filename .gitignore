@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+#
+# SPDX-License-Identifier: CC0-1.0
+
+.vscode/
+__pycache__/
+*.mp4
+*_pb2.py
+build/
+devel/
+*tmp*
+data/
+# *images/
+node_modules/
+models/
+test.py
+output/
+*.pyc
+sampled_det.txt
+third_party/
+loc_db/
+html_backup/
+v4.3.4/
+.ipynb_checkpoints/
+.catkin_workspace
+raw_images/
+client/model/
+bus_sent/
+cloudlet_sent/

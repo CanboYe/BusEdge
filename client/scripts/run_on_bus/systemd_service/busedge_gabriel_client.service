@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=Run gabriel client
+PartOf=busedge_launch_all.service
+After=busedge_run_roscore.service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Environment=DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority
+Type=simple
+ExecStart=/home/albert/gabriel-BusEdge/client/scripts/run_on_bus/gabriel_client.sh
+# Restart the service on non-zero exit code when terminated by a signal other than SIGHUP, SIGINT, SIGTERM or SIGPIPE
+Restart=on-failure
+RestartSec=1
+
+[Install]
+WantedBy=busedge_launch_all.service

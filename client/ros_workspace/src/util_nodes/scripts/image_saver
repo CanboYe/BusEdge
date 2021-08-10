@@ -1,0 +1,9 @@
+#!/usr/bin/python2
+
+# SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+#
+# SPDX-License-Identifier: Apache-2.0
+
+import busedge_utils.image_saver
+
+busedge_utils.image_saver.main()

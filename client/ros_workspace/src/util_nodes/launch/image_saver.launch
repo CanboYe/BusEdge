@@ -1,0 +1,31 @@
+<!--
+SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
+<launch>
+
+  <!-- A simple launch file for the image_saver node. -->
+
+  <node name="image_saver1" pkg="busedge_utils" type="image_saver" output="screen">
+    <param name="image" value="/camera1/image_raw"/>
+    <param name="filename" value="./FR/front_right_" />
+  </node>
+  <node name="image_saver2" pkg="busedge_utils" type="image_saver" output="screen">
+    <param name="image" value="/camera2/image_raw"/>
+    <param name="filename" value="./RR/rear_right_" />
+  </node>
+  <node name="image_saver3" pkg="busedge_utils" type="image_saver" output="screen">
+    <param name="image" value="/camera3/image_raw"/>
+    <param name="filename" value="./FC/front_center_" />
+  </node>
+  <node name="image_saver4" pkg="busedge_utils" type="image_saver" output="screen">
+    <param name="image" value="/camera4/image_raw"/>
+    <param name="filename" value="./RL/rear_left_" />
+  </node>
+  <node name="image_saver5" pkg="busedge_utils" type="image_saver" output="screen">
+    <param name="image" value="/camera5/image_raw"/>
+    <param name="filename" value="./FL/front_left_" />
+  </node>
+</launch>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+
+SPDX-License-Identifier: Apache-2.0
+-->
+<launch>
+   <node name="nmea_records_publisher" pkg="nmea_navsat_driver" type="nmea_records_publisher"/>
+</launch>

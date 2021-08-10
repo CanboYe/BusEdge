@@ -1,0 +1,33 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: gabriel-busedge
+Source: https://github.com/cmusatyalab/gabriel-busedge
+
+Files: client/ros_workspace/src/camera_driver/*
+Copyright: 2015-2016 PAL Robotics, S.L.
+License: BSD-3-Clause
+
+Files: client/ros_workspace/src/gps_driver/*
+Copyright: 2019 Ed Venator <evenator@gmail.com>
+           2016 Rein Appeldoorn
+           2013 Eric Perko
+License: BSD-3-Clause
+
+Files: server/engines/sign_monitor/hloc/*
+Source: https://github.com/cvg/Hierarchical-Localization
+Copyright: 2020 ETH Zurich
+License: Apache-2.0
+
+Files: server/engines/sign_monitor/hloc/utils/database.py
+       server/engines/sign_monitor/hloc/utils/read_write_model.py
+Copyright: 2018 ETH Zurich and UNC Chapel Hill
+License: BSD-3-Clause
+
+Files: server/engines/sign_monitor/netvlad_tf/*
+Source: https://github.com/uzh-rpg/netvlad_tf_open
+Copyright: 2018 ETH Zurich
+License: MIT
+
+Files: server/sinks/livemap/html/leaflet*
+Copyright: 2010-2017 Vladimir Agafonkin
+           2010-2011 CloudMade
+License: BSD-2-Clause

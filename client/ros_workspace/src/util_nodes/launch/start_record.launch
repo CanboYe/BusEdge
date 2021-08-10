@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+
+SPDX-License-Identifier: Apache-2.0
+-->
+<launch>
+   <node name="rosbag_record_5cam" pkg="rosbag" type="record" output="screen"
+         args="-o /home/albert/RECORDS/four -b 10240 --split --size=5120 --max-splits 20 \
+               -e '/camera(.*)/image_raw/compressed|/camera(.*)/camera_info|/fix|/acceleration|/velocity'"/>
+</launch>

@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+#
+# SPDX-License-Identifier: CC0-1.0
+
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore

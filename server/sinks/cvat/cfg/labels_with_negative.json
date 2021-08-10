@@ -1,0 +1,12 @@
+[
+    {
+        "name": "positive",
+        "color": "#3df53d",
+        "attributes": []
+    },
+    {
+        "name": "hard negative",
+        "color": "#ff007c",
+        "attributes": []
+    }
+]

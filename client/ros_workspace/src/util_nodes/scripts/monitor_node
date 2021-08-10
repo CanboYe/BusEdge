@@ -1,0 +1,9 @@
+#!/usr/bin/python3
+
+# SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+#
+# SPDX-License-Identifier: Apache-2.0
+
+import busedge_utils.monitor_node
+
+busedge_utils.monitor_node.main()

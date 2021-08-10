@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+#
+# SPDX-License-Identifier: Apache-2.0
+
+debug: true
+root_dir: ../../engines/autodet_engine/autoDet_tasks/ # GIVE DATA DIR
+target_name: test
+cvat:
+  host: "localhost"
+  port: 8080
+  user: ${CVAT_USER}
+  password: ${CVAT_PASS}
+  tasks:
+    pending: 5
+    length: 10
+    time: 6000
+    label_path: ./cfg/labels_with_negative.json

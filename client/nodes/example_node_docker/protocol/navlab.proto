@@ -1,0 +1,18 @@
+// SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+//
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package navlab;
+
+
+message EngineFields {
+    message gps {
+        float latitude = 1;
+        float longitude = 2;
+        float altitude = 3;
+    }
+    gps gps_data = 1;
+    string image_filename = 2;
+}

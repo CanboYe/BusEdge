@@ -1,0 +1,118 @@
+<!--
+SPDX-FileCopyrightText: 2021 Carnegie Mellon University
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
+<html>
+<head>
+<title>BusEdge - LiveMap</title>
+<link rel="stylesheet" type="text/css" href="leaflet.css"/>
+<script type="text/javascript" src="leaflet.js"></script>
+<script type="text/JavaScript" src="http://deluge.elijah.cs.cmu.edu:9000/socket.io/socket.io.js"></script>
+<style>
+   #map{width:100%;height:100%}
+   .leaflet-popup {
+          position:absolute;
+          text-align:center;
+
+      }
+    .leaflet-popup-content {
+        max-width: 100%;
+        overflow: auto;
+        text-align:center;
+    }
+    .leaflet-popup-content img {
+      margin: 0 auto;
+      }
+
+</style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    var map = L.map('map').setView([40.4475,-79.9675],14); // for Pit
+    // var map = L.map('map').setView([40.224738, -80.217824],14); // for First Transit, 2439 W Pike St., Houston, PA 15342.
+    L.tileLayer('http://deluge.elijah.cs.cmu.edu/osm_tiles/{z}/{x}/{y}.png',{maxZoom:20,maxNativeZoom:18}).addTo(map);
+    //Fixes issue with pop-up in wrong location due to setting bubble size after image load
+    document.querySelector(".leaflet-popup-pane").addEventListener("load", function (e) {
+        var tagName = e.target.tagName,
+        popup = map._popup;
+        if (tagName === "IMG" && popup) {
+            popup.update();
+        }
+      }, true);
+
+    var navlab_icon = L.icon({
+      iconUrl: 'http://deluge.elijah.cs.cmu.edu:/images/vehicle.png',
+      iconSize: [30,30]
+      // iconUrl: 'http://deluge.elijah.cs.cmu.edu/images/marker-icon-2x.png',
+      // iconSize: [10,10]
+    });
+    var dot_icon = L.icon({
+      iconUrl: 'http://deluge.elijah.cs.cmu.edu/images/circle.png',
+      iconSize: [5,5]
+    });
+    var navlabMarker = L.marker([-40,70], {icon: navlab_icon});
+    var navlabMarker2 = navlabMarker;
+    // Load initial data in database + dynamically add new data from database when added in real time
+    var socket = io.connect('http://deluge.elijah.cs.cmu.edu:9000');
+    var socket2 = io.connect('http://deluge.elijah.cs.cmu.edu:9001');
+    socket.on('Connected', function (data) {
+        socket.emit('Ready for Detection Data', {});
+
+        //socket.emit('ready for more data', {});
+    });
+    socket.on('Complete', function (data) {
+        socket.emit('Ready for More Detection Data', {});
+        //socket.emit('ready for more data', {});
+    });
+    socket.on('Initial', function (data) {
+        //socket.emit('ready for more data', {});
+        var obj_icon = L.icon({
+          iconUrl: 'http://deluge.elijah.cs.cmu.edu/images/' + data.row_to_json.type + '.png',
+          iconSize: [25,25]
+        });
+        var marker = L.marker([data.row_to_json.latitude,data.row_to_json.longitude], {icon: obj_icon});
+        marker.bindPopup("<img src='http://deluge.elijah.cs.cmu.edu/images/cloudletImages/" + data.row_to_json.image_dir + "'/>",
+              {maxWidth: "none"});
+        marker.addTo(map);
+    });
+    socket.on('Update', function (data) {
+        var obj = JSON.parse(data.message.payload);
+        var obj_icon = L.icon({
+          iconUrl: 'http://deluge.elijah.cs.cmu.edu/images/' + obj.type + '.png',
+          iconSize: [25,25]
+        });
+        var marker = L.marker([obj.latitude,obj.longitude], {icon: obj_icon});
+        marker.bindPopup("<img src='http://deluge.elijah.cs.cmu.edu/images/cloudletImages/" + obj.image_dir + "'/>",
+              {maxWidth: "none"});
+        marker.addTo(map);
+    });
+
+    socket2.on('Connected', function (data) {
+        socket2.emit('Ready for Trajectory Data', {});
+    });
+    socket2.on('Complete', function (data) {
+        socket2.emit('Ready for More Trajectory Data', {});
+        //socket.emit('ready for more data', {});
+    });
+    socket2.on('Initial', function (data) {
+        //socket.emit('ready for more data', {});
+        var marker = L.marker([data.row_to_json.latitude,data.row_to_json.longitude], {icon: dot_icon});
+        marker.addTo(map);
+    });
+    socket2.on('Update', function (data) {
+        var obj = JSON.parse(data.message.payload);
+
+        navlabMarker = L.marker([obj.latitude,obj.longitude], {icon: navlab_icon});
+        // navlabMarker = L.marker([obj.latitude,obj.longitude], {icon: dot_icon});
+        navlabMarker.addTo(map);
+        navlabMarker2.setIcon(dot_icon);
+        navlabMarker2 = navlabMarker;
+
+    });
+
+</script>
+</body>
+</html>
