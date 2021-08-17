@@ -56,6 +56,20 @@ functionality modules including cognitive engines and early-discard filters
 into different docker containers because we want to enable rapid functionality
 expansion and avoid dependency conflicts.
 
+## Citations
+Please cite the following thesis if you find this useful.
+  ```
+  @mastersthesis{Ye-2021-128891,
+  author = {Canbo Ye},
+  title = {BusEdge: Efficient Live Video Analytics for Transit Buses via Edge Computing},
+  year = {2021},
+  month = {July},
+  school = {},
+  address = {Pittsburgh, PA},
+  number = {CMU-RI-TR-21-46},
+  }
+  ```
+
 ## License
 
 - All original source code and documentation are licensed under the
